@@ -38,6 +38,7 @@ class Delivery {
     
             const response = {
                 name: minRoute.name,
+                id: minRoute.id,
                 delivery_time: minRoute.routes[0].legs[0].duration.text
             }
     
