@@ -19,13 +19,11 @@ curl -X "POST" "http://localhost:8080/delivery" \
      -d $'{"address": "500 S Capitol Ave, Indianapolis, IN"}'
 ```
 
-OR
-
 Public
 ```sh
 curl -X "POST" "http://www.samlesem.com/delivery" \
      -H "Content-Type: application/json" \
-     -d $'{"address": "500 S Capitol Ave,, Indianapolis, IN"}'
+     -d $'{"address": "500 S Capitol Ave, Indianapolis, IN"}'
 ```
 
 #### Configure Local Environment
