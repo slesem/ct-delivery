@@ -38,7 +38,7 @@ class Delivery {
     
             const response = {
                 name: minRoute.name,
-                deliveryTime: minRoute.routes[0].legs[0].duration.text
+                delivery_time: minRoute.routes[0].legs[0].duration.text
             }
     
             return response;
@@ -129,7 +129,7 @@ class Delivery {
 
                     const bodyParse = JSON.parse(body);
                     resolve(bodyParse);
-                    
+
                 });
             });
 
