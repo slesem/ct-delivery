@@ -18,6 +18,7 @@ class Delivery {
                 throw new Error('address not defined');
 
             }
+
             let kitchens = await this._getKitchens();
             kitchens = kitchens.filter((data) => data.kitchen_state === 'online');
     
@@ -41,7 +42,7 @@ class Delivery {
                 name: minRoute.name,
                 id: minRoute.id,
                 delivery_time: minRoute.routes[0].legs[0].duration.text
-            }
+            };
     
             return response;
 
@@ -96,10 +97,10 @@ class Delivery {
                 headers: {
                     'Content-Type': 'application/json',
                 }
-            }
+            };
     
             let response = await this.request(options);
-            response = { ...response, id: kitchen.id, name: kitchen.name }
+            response = { ...response, id: kitchen.id, name: kitchen.name };
     
             return response;
 
@@ -133,6 +134,7 @@ class Delivery {
                     resolve(bodyParse);
 
                 });
+                
             });
 
             req.on('error', (error) => {

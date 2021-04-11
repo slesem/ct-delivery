@@ -10,15 +10,16 @@ const server = http.createServer((req, res) => {
 
     if(req.url === '/delivery' && req.method === 'POST') {
 
-        return PostDelivery(req, res);
+        return postDelivery(req, res);
 
     }
 
     res.write('Hello World!');
     res.end();
-})
 
-async function PostDelivery(req, res) {
+});
+
+function postDelivery(req, res) {
 
     let body = '';
 
@@ -27,19 +28,24 @@ async function PostDelivery(req, res) {
         body += data
 
         if (body.length > 1e6) { 
+
             req.connection.destroy();
+
         }
 
-    }).on('end', async () => {
+    });
+    
+    req.on('end', () => {
 
         const postData = JSON.parse(body);
         req.body = { ...postData };
         const delivery = new deliveryController();
         res.setHeader('Content-Type', 'application/json');
-        await delivery.estimateTime(req, res);
+        delivery.estimateTime(req, res);
 
     });
-}
+
+};
 
 server.listen(port, error => {
 
