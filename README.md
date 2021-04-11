@@ -11,4 +11,4 @@
 4. Run `npm start`
 
 #### Configure Local Environment
-Create a file called `.env` and included `GOOGLE_API_KEY=<your_api_key>`
+Create a file called `.env` and include `GOOGLE_API_KEY=<your_api_key>`
