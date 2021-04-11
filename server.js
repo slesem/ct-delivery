@@ -2,14 +2,16 @@
 
 const http = require('http');
 const deliveryController = require('./controllers/delivery');
+require('dotenv').config();
 
-const host = process.env.HOST || '0.0.0.0'
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 
 const server = http.createServer((req, res) => {
 
     if(req.url === '/delivery' && req.method === 'POST') {
+
         return PostDelivery(req, res);
+
     }
 
     res.write('Hello World!');
@@ -18,27 +20,37 @@ const server = http.createServer((req, res) => {
 
 async function PostDelivery(req, res) {
 
-    req 
-    .on('data', () => { 
+    let body = '';
 
-    }) 
-    .on('end', () => { 
-      
-        console.log('req -> ', req)
-    //   const delivery = new deliveryController();
-    //   const response = await delivery.estimateDelivery(req, res);
-      const response = { time: "23 mins" };
-      res.setHeader('Content-Type', 'application/json;charset=utf-8');
-      res.end(JSON.stringify(response))
-    })
+    req.on('data', (data) => { 
+        
+        body += data
+
+        if (body.length > 1e6) { 
+            req.connection.destroy();
+        }
+
+    }).on('end', async () => {
+
+        const postData = JSON.parse(body);
+        req.body = { ...postData };
+        const delivery = new deliveryController();
+        res.setHeader('Content-Type', 'application/json');
+        await delivery.estimateTime(req, res);
+
+    });
 }
 
 server.listen(port, error => {
+
     if (error) {
-        return console.error(error);
+
+        return console.log(error);
+
     }
 
-    console.log(`Server Listening on ${port}`)
+    console.log(`Server listening on ${port}`);
+
 });
 
 

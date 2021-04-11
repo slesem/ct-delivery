@@ -1,0 +1,23 @@
+{
+  "name": "ct-delivery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slesem/ct-delivery.git"
+  },
+  "author": "Sam Lesem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slesem/ct-delivery/issues"
+  },
+  "homepage": "https://github.com/slesem/ct-delivery#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}

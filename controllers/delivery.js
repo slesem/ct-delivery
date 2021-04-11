@@ -3,18 +3,21 @@ const delivery = require('../services/delivery');
 
 
 class deliveryController {
+
+    constructor() {}
     
-    async estimateDelivery(req, res) {
+    async estimateTime(req, res) {
 
         try {
 
-            const $service = new delivery(req, res);
-            const response = await $service.estimateDeliveryTime(req);
-            // return json
+            const $delivery = new delivery();
+            const response = await $delivery.estimateTime(req.body);
+            res.end(JSON.stringify(response));
 
         } catch (error) {
 
-            // error status codes
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: error.message }));
 
         }
 
