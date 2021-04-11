@@ -30,9 +30,10 @@ class Delivery {
     
             let result = await Promise.all(promises);
     
-            const minRoute = result.reduce(function(res, obj) {
+            const minRoute = result.reduce((accumulator, currentObj) => {
 
-                return (obj.routes[0].legs[0].distance.value < res.routes[0].legs[0].distance.value) ? obj : res;
+                return (currentObj.routes[0].legs[0].distance.value < accumulator.routes[0].legs[0].distance.value) 
+                    ? currentObj : accumulator;
 
             });
     
