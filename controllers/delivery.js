@@ -1,6 +1,6 @@
 'use strict';
-const delivery = require('../services/delivery');
 
+const delivery = require('../services/delivery');
 
 class deliveryController {
 
@@ -20,7 +20,6 @@ class deliveryController {
             res.end(JSON.stringify({ error: error.message }));
 
         }
-
 
     };
 

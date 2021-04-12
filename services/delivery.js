@@ -52,8 +52,6 @@ class Delivery {
 
         }
 
-
-
     }
 
     async _getKitchens() {
@@ -66,8 +64,8 @@ class Delivery {
                 path: '/api/kitchens',
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
-                },
+                    'Content-Type': 'application/json'
+                }
             };
     
             return await this.request(options);
@@ -95,7 +93,7 @@ class Delivery {
                 path: `/maps/api/directions/json?origin=${lat},${lng}&destination=${encodedAddress}&key=${key}`,
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             };
     
@@ -109,8 +107,6 @@ class Delivery {
             throw error;
 
         }
-
-
 
     }
 
@@ -134,7 +130,7 @@ class Delivery {
                     resolve(bodyParse);
 
                 });
-                
+
             });
 
             req.on('error', (error) => {
