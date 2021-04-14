@@ -37,11 +37,21 @@ function postDelivery(req, res) {
     
     req.on('end', () => {
 
-        const postData = JSON.parse(body);
-        req.body = { ...postData };
-        const delivery = new deliveryController();
         res.setHeader('Content-Type', 'application/json');
-        delivery.estimateTime(req, res);
+
+        if (body.length === 0) {
+
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: 'body undefined' }));
+            
+        } else {
+
+            const postData = JSON.parse(body)
+            req.body = { ...postData };
+            const delivery = new deliveryController();
+            delivery.estimateTime(req, res);
+
+        }
 
     });
 
